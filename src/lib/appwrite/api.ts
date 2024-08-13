@@ -4,18 +4,12 @@ import { account, appwriteConfig, avatars, databases } from './config';
 
 export async function createUserAccount(user: INewUser) {
     try {
-        console.log(user)
         const newAccount = await account.create(
             ID.unique(),
             user.email,
             user.password,
             user.name
         ) 
-
-        console.log(         ID.unique(),
-        user.email,
-        user.password,
-        user.name)
 
         if (!newAccount) throw Error; 
 
@@ -68,10 +62,7 @@ export async function signInAccount(user: { email: string; password: string; }) 
 
 export async function getCurrentUser() {
     try {
-        console.log("getting")
-
         const currentAccount = await account.get();
-        console.log("got")
         if (!currentAccount) throw Error;
         const currentUser = await databases.listDocuments(
             appwriteConfig.databaseId,
