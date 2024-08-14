@@ -38,9 +38,7 @@ const SignupForm = () => {
       const newUser = await createUserAccount(user);
 
       if (!newUser) {
-        toast({ title: "Sign up failed. Please try again.", });
-        
-        return;
+        return toast({ title: "Sign up failed. Please try again." });
       }
 
       const session = await signInAccount({
@@ -49,23 +47,17 @@ const SignupForm = () => {
       });
 
       if (!session) {
-        toast({ title: "Something went wrong. Please login your new account", });
-        
         navigate("/sign-in");
-        
-        return;
+        return toast({ title: "Something went wrong. Please login your new account" });
       }
 
       const isLoggedIn = await checkAuthUser();
 
       if (isLoggedIn) {
         form.reset();
-
         navigate("/");
       } else {
-        toast({ title: "Login failed. Please try again.", });
-        
-        return;
+        return toast({ title: "Login failed. Please try again." });
       }
     } catch (error) {
       console.log({ error });
