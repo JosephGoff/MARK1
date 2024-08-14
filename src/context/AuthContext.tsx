@@ -33,7 +33,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const checkAuthUser = async () => {
         try {
             const currentAccount = await getCurrentUser();
-            console.log(currentAccount)
 
             if (currentAccount) {
                 setUser({
@@ -58,7 +57,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     useEffect(()=>{
-        console.log(localStorage.getItem('cookieFallback'))
         if (
             localStorage.getItem('cookieFallback') === '[]' || 
             localStorage.getItem('cookieFallback') === null
